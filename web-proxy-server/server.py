@@ -22,7 +22,7 @@ DB = []
 data_format_send = {
   "contextElements": [
     {
-      "id": "nordcoder01",
+      "id": "your_sensor_id",
       "attributes": [
         {
           "name": "sensorvalue",
