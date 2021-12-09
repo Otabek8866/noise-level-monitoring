@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Noise Monitoring System</title>
+
+        <!-- Custom fonts for this template-->
+        <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="../static/css/sb-admin-2.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../static/css/custom.css">
+        <script type="text/JavaScript">
+            <!--
+            function AutoRefresh( t ) {
+               setTimeout("location.reload(true);", t);
+            }
+         //-->
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    </head>
+
+    <body id="page-top" onload="JavaScript:AutoRefresh(3500);">
+
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <br><br><br>
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-laugh-wink"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3" style="font-size: larger">Noise Monitoring System</div>
+                </a>
+                <br><br><br><br>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+                <!-- Nav Item - Rooms -->
+                <li class="nav-item active">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <spans style="font-size: x-large;">Rooms</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded" style="font-size: x-large;">
+                            <a class="collapse-item" href="#">Room1</a>
+                            <a class="collapse-item" href="#">Room2</a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+            </ul>
+
+            <!-- End of Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+                    <br>
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Inform me button -->
+                        <div class="container bg-light">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-primary shadow mb-4" style="font-size: x-large;" onclick="fireSweetAlert()">Inform me</button>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <!-- Noise Level Status Circle -->
+                            <div class="col-xl-4 col-lg-5">
+                                <div class="card shadow mb-4 align-items-center">
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        {% if 35 >= sound %}
+                                        <div class="badge shadow mb-4" style="font-size:40px;font-weight:bold;color:#fff;height:200px;width:200px;background:rgb(12, 255, 4); vertical-align: middle;">{{ sound }} dB</div>
+
+                                        {% elif 50 >= sound %}
+                                        <div class="badge shadow mb-4" style="font-size: 40px;font-weight: bold;color: #fff;height: 200px;width: 200px;background: orange;  vertical-align: middle;">{{ sound }} dB</div>
+
+                                        {% else %}
+                                        <div class="badge shadow mb-4" style="font-size: 40px;font-weight: bold;color: #fff;height: 200px;width: 200px;background: red;">{{ sound }} dB</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="mt-4 text-center larger align-items-center">
+                                        <span class="dotgood"></span>
+                                        <i>Good &nbsp</i>
+                                        <span class="dotwarning"></span>
+                                        <i>Warning &nbsp</i>
+                                        <span class="dotalarming"></span>
+                                        <i>Alarming &nbsp</i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- User Notification Text Box -->
+                            <div class="card shadow mb-4" style="width: 65%">
+                                <div class="card-header" style="font-size: larger;">
+                                    Instructions
+                                </div>
+                                <div class="card-body">
+                                    {% if 35 >= sound %}
+                                    <h5 class="card-title">Noise Level is Safe</h5>
+                                    <p class="card-text" style="font-size: large;">Great job, dear Teachers</p> <br>
+                                    <p class="card-text">For extra information, have a look on the references</p>
+                                    <a href="https://www.cdc.gov/niosh/topics/noise/reducenoiseexposure/regsguidance.html" class="btn btn-primary shadow mb-4">CDC Noise Guideline</a>
+                                    <a href="https://www.who.int/docstore/peh/noise/Comnoise-4.pdf" class="btn btn-info shadow mb-4">WHO Noise Guidelines</a>
+                                    <a href="https://link.springer.com/article/10.1007%2FBF03216841" class="btn btn-warning shadow mb-4">Psychological Effects</a>
+                                    <!-- <a href="#" class="btn btn-info shadow mb-4">Reference 3</a>  -->
+                                    {% elif 50 >= sound %}
+                                    <h5 class="card-title">Noise Level is Annoying</h5>
+                                    <p class="card-text" style="font-size: large;">Prolonged exposure can cause long-lasting physiological and psychological adverse impacts. This results in distrupting people's ability to learn from text as well as letter, number and word recognition.</p>
+                                    <p class="card-text" style="font-size: large;">We suggest light exercises, dim lights and calming music for kids.</p>
+                                    <p class="card-text">Please, have a look on references.</p>
+                                    <a href="https://link.springer.com/article/10.1007%2FBF03216841" class="btn btn-warning shadow mb-4">Psychological Effects</a>
+                                    <a href="https://www.who.int/docstore/peh/noise/Comnoise-4.pdf" class="btn btn-info shadow mb-4">WHO Noise Guidelines</a>
+                                    <a href="https://www.cdc.gov/niosh/topics/noise/reducenoiseexposure/regsguidance.html" class="btn btn-primary shadow mb-4">CDC Noise Guideline</a> {% else %}
+                                    <h5 class="card-title" style="font-size: large;">Noise Level is Hazardous</h5>
+                                    <p class="card-text" style="font-size: large;">Continued exposure to this level of noise can create stress, high anxiety, increased annoyance, depression and fatigue.</p>
+                                    <p class="card-text" style="font-size: large;">We suggest light exercises, dim lights and calming music for kids.</p>
+                                    <p class="card-text">Please, have a look on references.</p>
+                                    <a href="https://link.springer.com/article/10.1007%2FBF03216841" class="btn btn-warning shadow mb-4">Psychological Effects</a>
+                                    <a href="https://www.who.int/docstore/peh/noise/Comnoise-4.pdf" class="btn btn-info shadow mb-4">WHO Noise Guidelines</a>
+                                    <a href="https://www.cdc.gov/niosh/topics/noise/reducenoiseexposure/regsguidance.html" class="btn btn-primary shadow mb-4">CDC Noise Guideline</a> {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Monitoring Noice Chart -->
+
+                        <div class="row align-items-center">
+                            <div class="col-lg-5 shadow mb-4" style="margin-left: 5%;">
+                                <img src="data:image/png;base64, {{ plot_url }}">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2021</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="../static/vendor/jquery/jquery.min.js"></script>
+        <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="../static/js/sb-admin-2.min.js"></script>
+
+        <!-- Page level plugins -->
+        <script src="../static/vendor/chart.js/Chart.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="../static/js/demo/chart-bar-demo.js"></script>
+        <script src="../static/js/demo/chart-pie-demo.js"></script>
+        <script>
+            function fireSweetAlert() {
+                Swal.fire({
+                    icon: 'Alarm',
+                    title: 'Alarming Noise Level',
+                    text: 'Please follow the instructions on the page'
+                })
+                var mp3_url = 'http://192.168.239.109/getaudio';
+                (new Audio(mp3_url)).play();
+            }
+        </script>
+
+    </body>
+
+</html>
