@@ -1,2 +1,2 @@
-# noise-level-monitoring
+# Noise Level Monitoring
 Noise Level Monitoring application for classrooms
